@@ -90,7 +90,7 @@ btnList.forEach(btn => {
     btn.addEventListener('click', e => {
         
         if(tallySum(playerTally, computerTally, drawTally) === 5){
-            
+            //Potentially add a header message "that's all folks..?"
             
         }else{
             resultBox.innerHTML = "";

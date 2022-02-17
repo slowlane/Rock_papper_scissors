@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bod {
+    height: 99vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0 0 100px black;
+    
+    
+}
+
+.container {
+    position: absolute;
+    top: 33vh;
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+    
+}
+
+
+.btn {
+    background-color: rgba(0, 0, 0, 0.82);
+    color: white;
+    padding: 1.5rem;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.btn-large {
+    width: 10rem;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.75);
+}
+
+.results {
+    position: absolute;
+    top: 67vh;
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7em;
+}
+
+.paraLarge,
+.tallyPara,
+.resultPara {
+    flex: 1;
+    font-size: 45px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tallyPara {
+    font-size: 35px;
+}
+
+.resultPara {
+    align-self: center;
+    font-size: 55px;
+}
+
+@media screen and (max-width: 800px) {
+    
+    .container {
+        flex-direction: column;
+        top: 31vh;
+    }
+
+    .results {
+        top: 69vh;
+    }
+
+    .paraLarge,
+    .tallyPara,
+    .resultPara {
+        flex: 1;
+        font-size: 30px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .tallyPara {
+        font-size: 25px;
+    }
+    
+    .resultPara {
+        font-size: 40px;
+    }
+
+}

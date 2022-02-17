@@ -2,6 +2,8 @@ function computerPlay(){
     //Randomly return a number between 1-3
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     let computerSelection = "";
+
+
     
     
     switch(randomNumber){
@@ -50,29 +52,123 @@ const computerSelection = computerPlay();
 console.log(playRound(playerSelection, computerSelection));*/
 
 
-function game(){
-    playerTally = 0;
-    computerTally = 0;
-    drawTally = 0;
+function game(playerSelection){
+    //for (let i = 0; i < 5; i++) {
 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Input rock, paper or scissors!");
+        //change below line to take input from button event
+        //let playerSelection = prompt("Input rock, paper or scissors!");
         let result = playRound(playerSelection, computerPlay());
         let resultCheck = result.split(" ");
 
-        if(resultCheck[1] === "win!"){
+
+ 
+        return resultCheck[1];
+     //}
+}
+
+//game();
+
+const btnList = document.querySelectorAll('.btn');
+const resultBox = document.querySelector('.results');
+
+
+let playerTally = 0;
+let computerTally = 0;
+let drawTally = 0;
+
+const playerTallyPara = document.createElement('p');
+const computerTallyPara = document.createElement('p');
+const drawTallyPara = document.createElement('p');
+const resultsPara = document.createElement('p');
+
+playerTallyPara.classList.add("tallyPara");
+computerTallyPara.classList.add("tallyPara");
+drawTallyPara.classList.add("tallyPara");
+resultsPara.classList.add("resultPara");
+
+btnList.forEach(btn => {
+    btn.addEventListener('click', e => {
+        
+        if(tallySum(playerTally, computerTally, drawTally) === 5){
+            
+            
+        }else{
+            resultBox.innerHTML = "";
+            const result = game(btn.textContent);
+
+            const newPara = document.createElement('p');
+            newPara.classList.add("paraLarge");
+
+
+            if(result === "win!"){
+                newPara.textContent = "You win!";
+        
+            }else if(result === "lose!"){
+                newPara.textContent = "You lose!";
+        
+            }else{
+                newPara.textContent = "It's a draw!";
+            
+        }
+            addTallies(result);
+        
+            resultBox.appendChild(newPara);
+            resultBox.appendChild(playerTallyPara);
+            resultBox.appendChild(computerTallyPara);
+            resultBox.appendChild(drawTallyPara);
+    }
+    tallySum(playerTally, computerTally, drawTally);
+    })
+});
+
+function addTallies(append){
+        if(append === "win!"){
             playerTally++;
-        }else if(resultCheck[1] === "lose!") {
+            playerTallyPara.textContent = `You have won ${playerTally} time(s)!`;
+        }else if(append === "lose!") {
             computerTally++;
+            computerTallyPara.textContent = `You have lost ${computerTally} time(s)!`;
         }
         else{
             drawTally++;
+            drawTallyPara.textContent = `You have drawn ${drawTally} time(s)!`;
         }
-        console.log(result);
-        console.log(`Currently, player has won ${playerTally} time(s).
-        The computer has won ${computerTally} time(s). 
-        You've drawn ${drawTally} time(s).`);
-     }
 }
 
-game();
+function tallySum(playerNum, compNum, drawNum){
+    if(playerNum + compNum + drawNum === 5){
+        if(playerNum > compNum){
+            resultsPara.textContent = "You have won!";
+        } else if (compNum > playerNum){
+            resultsPara.textContent = "The computer has won! It's over!";
+        } else {
+            resultsPara.textContent = "It's a draw...";
+        }
+        resultBox.appendChild(resultsPara);
+    }
+    return playerNum + compNum + drawNum;
+}
+/*
+For now, remove the logic that plays exactly five rounds.
+
+Create three buttons, one for each selection. 
+Add an event listener to the buttons that call 
+your playRound function with the correct 
+playerSelection every time a button is clicked. 
+(you can keep the console.logs for this step)
+
+Add a div for displaying results and change all 
+of your console.logs into DOM methods.
+
+Display the running score, and announce a 
+winner of the game once one player reaches 5 points.
+
+You will likely have to refactor (rework/rewrite) 
+your original code to make it work for this. That’s OK! 
+
+Reworking old code is an important part of a programmer’s life.
+
+Once you’re all done with your UI and made sure everything’s 
+satisfactory, commit your changes to the rps-ui branch.
+
+*/
